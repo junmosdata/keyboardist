@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block title %}
+    KEYBOARDIST - Product list
+{% endblock %}
+
+{% block extra-style %}
+    <style>
+        img {
+            transition: all 0.2s linear;
+        }
+        .scale:hover img{
+            transform: scale(1.1);
+        }
+        #thumb_frame {
+            overflow: hidden;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <section class="inner_page_head mb-5">
+        <div class="container_fuild">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="full">
+                        <h3>Product list</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    {% if user.get_username == 'admin' %}
+        <div class="mb-5 text-right">
+            <a class="btn btn-outline-danger" href="{% url 'product:add' %}">추가</a>
+            <a class="btn btn-outline-danger" href="{% url 'product:change' %}">수정</a>
+        </div>
+    {% endif %}
+
+    <hr style="margin: 0 0 20px 0;">
+
+    {% for object in object_list %}
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="Thumbnail col-sm-4 col-lg-4 border shadow" id="thumb_frame">
+                <a href="{{ object.get_absolute_url }}" class="scale">
+                    <img src="{{ object.image.thumb_url }}" alt="" width="100%">
+                </a>
+            </div>
+            <div class="col-sm-8 col-lg-8 mt-5 pl-5">
+                <a href="{{ object.get_absolute_url }}" id="prd_title">
+                    <h2>{{ object.title }}</h2>
+                </a>
+                <span>{{ object.content }}</span><br>
+                <h3 id="price" class="float-right font-weight-bold">{{ object.price | intcomma }} ₩</h3>
+            </div>
+        </div>
+        <hr style="margin: 0 0 20px 0;">
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+<!-- 제목 블록 Start (기본값 My Blog Page) -->
+{% block title %}
+    KEYBOARDIST - Add / Update Product
+{% endblock %}
+<!-- 제목 블록 End -->
+
+<!-- 스타일 블록 Start -->
+{% block extra-style %}
+{% endblock %}
+<!-- 스타일 블록 End -->
+
+<!-- 스크립트 블록 Start -->
+{% block extra-script %}
+
+{% endblock %}
+<!-- 스크립트 블록 End -->
+
+
+<!-- 콘텐츠 블록 Start -->
+{% block content %}
+
+    <section class="inner_page_head mb-5">
+        <div class="container_fuild">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="full">
+                        <h3>Product Add / Update</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% if form.errors %}
+    <div class="alert alert-danger">
+        <div class="font-weight-bold">Wrong! Please correct the error(s) below.</div>
+        {{ form.errors }}
+        {{ form }}
+    </div>
+    {% endif %}
+
+    {% if form.is_multipart %}
+    <form action="." method="post" class="card pt-3" enctype="multipart/form-data"> 
+    {% else %}
+    <form action="." method="post" class="card pt-3">
+    {% endif %}
+    {% csrf_token %}
+
+        <div class="form-group row">
+            {{ form.title|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }}
+            <div class="col-sm-5">
+                {{ form.title|add_class:"form-control"|attr:"autofocus" }}
+            </div>
+        </div>
+
+        <!-- 슬러그는 자동으로 생성 -->
+        <!-- <div class="form-group row">
+            {{ form.slug|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }}
+            <div class="col-sm-5">
+                {{ form.slug|add_class:"form-control"|attr:"readonly" }}
+            </div>
+            <small class="form-text text-muted">{{ form.slug.help_text }}</small>
+        </div> -->
+
+        <div class="form-group row">
+            {{ form.price|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }}
+            <div class="col-sm-5">
+                {{ form.price|add_class:"form-control number" }}
+            </div>
+            <small class="form-text text-muted">{{ form.price.help_text }}</small>
+        </div>
+
+        <div class="form-group row">
+            {{ form.image|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }}
+            <div class="col-sm-5">
+                {{ form.image|add_class:"form-control-file" }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            {{ form.content|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }}
+            <div class="col-sm-8">
+                {{ form.content|add_class:"form-control" }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="offset-sm-2 col-sm-5">
+                <input type="submit" value="Submit" class="btn btn-info" />
+            </div>
+        </div>
+
+    </form>
+
+{% endblock %}
+<!-- 콘텐츠 블록 End -->

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    KEYBOARDIST - Reviews
+{% endblock %}
+
+{% block extra-style %}
+{% endblock %}
+
+{% block content %}
+<section class="inner_page_head mb-5">
+    <div class="container_fuild">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="full">
+                    <h3>Reviews</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% if user.is_active %}
+    <div class="mb-5 text-right">
+        <a class="btn btn-outline-danger" href="{% url 'blog:add' %}">추가</a>
+        <a class="btn btn-outline-danger" href="{% url 'blog:change' %}">수정</a>
+    </div>
+{% endif %}
+
+<hr style="margin: 0 0 20px 0;">
+
+{% for post in posts %}
+    <h2><a href='{{ post.get_absolute_url }}'>{{ post }}</a></h2>
+    {{ post.modify_dt|date:"N d, Y" }}
+
+    <p>{{ post.description }}</p>
+    <hr style="margin: 0 0 20px 0;">
+{% endfor%}
+
+<br />
+
+<div class="text-center">
+    <span>
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number}}"><i class='fa fa-arrow-circle-left'></i></a>
+        {% endif %}
+
+        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number}}"><i class='fa fa-arrow-circle-right'></i></a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}
+
+{% block extra-script %}
+{% endblock %}

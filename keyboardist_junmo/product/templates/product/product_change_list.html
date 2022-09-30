@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+<!-- 제목 블록 Start (기본값 My Blog Page) -->
+{% block title %}
+    KEYBOARDIST - Change Product
+{% endblock %}
+<!-- 제목 블록 End -->
+
+<!-- 스타일 블록 Start -->
+{% block extra-style %}
+{% endblock %}
+<!-- 스타일 블록 End -->
+
+<!-- 콘텐츠 블록 Start -->
+{% block content %}
+    <section class="inner_page_head mb-5">
+        <div class="container_fuild">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="full">
+                        <h3>Product Edit</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <h1>등록된 제품 수정 - {{ user }}</h1>
+    <br>
+
+    <table class="table table-bordered table-sm table-striped">
+
+        <thead>
+            <tr class="table-danger">
+                <th>제목</th>
+                <th>내용</th>
+                <th>작성자</th>
+                <th>수정</th>
+                <th>삭제</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for item in object_list %}
+            <tr>
+                <td>{{ item.title }}</td>
+                <td>{{ item.price }}</td>
+                <td>{{ item.owner }}</td>
+                <td><a href="{% url 'product:update' item.id %}">수정</a></td>
+                <td><a href="{% url 'product:delete' item.id %}">삭제</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+{% endblock %}
+<!-- 콘텐츠 블록 End -->
+
+<!-- 스크립트 블록 Start -->
+{% block extra-script %}
+
+{% endblock %}
+<!-- 스크립트 블록 End -->

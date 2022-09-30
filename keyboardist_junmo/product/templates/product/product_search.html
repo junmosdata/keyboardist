@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    KEYBOARDIST - Search
+{% endblock%}
+<!-- {% if object_list %}
+
+{% endif %} -->
+
+{% block extra-style %}
+{% endblock %}
+
+{% block content%}
+    <section class="inner_page_head mb-5">
+        <div class="container_fuild">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="full">
+                        <h3>Search</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <form method='post' class="mb-5"> {% csrf_token %}
+        {{ form.as_table }}
+        <input type="submit" value="검색" class='btn btn-primary btn-sm'>
+    </form>
+    {% if object_list %}
+        {% for post in object_list %}
+            <h2><a href='{{ post.get_absolute_url }}'>{{ post }}</a></h2>
+            {{ post.modify_dt|date:"N d, Y" }}
+            <p>{{ post.content }}</p>
+            <hr style="margin: 0 0 20px 0;">
+        {% endfor %}
+
+    {% elif search_term %}
+        {{ search_term }}을(를) 찾을 수 없습니다.
+    {% else %}
+        
+    {% endif %}
+
+{% endblock %}
+
+{% block extra-script %}
+{% endblock %}

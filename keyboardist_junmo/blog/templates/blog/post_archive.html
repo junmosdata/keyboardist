@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+My Blog Archive Page
+{% endblock %}
+
+{% block extra-style %}
+{% endblock %}
+
+{% block content %}
+
+    <section class="inner_page_head mb-5">
+        <div class="container_fuild">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="full">
+                        <h3>Product Archive</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% for date in date_list %}
+    <a href="{% url 'blog:post_year_archive' date|date:'Y' %}"
+        class="btn btn-outline-danger btn-sm mx-1">
+        Year-{{ date|date:"Y"}}
+    </a>
+    {% endfor %}
+
+    <br><br>
+    
+    <div>
+        <ul>
+            {% for post in object_list %}
+            <li class="h5">{{ post.modify_date|date:"Y-m-d"}}&emsp;
+                <a href="{{ post.get_absolute_url}}"><strong> {{ post.title}}</strong></a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
+
+{% block extra-script %}
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+<!-- 제목 블록 Start (기본값 My Blog Page) -->
+{% block title %}
+    KEYBOARDIST - Logged Out
+{% endblock %}
+<!-- 제목 블록 End -->
+
+<!-- 스타일 블록 Start -->
+{% block extra-style %}
+{% endblock %}
+<!-- 스타일 블록 End -->
+
+<!-- 콘텐츠 블록 Start -->
+{% block content %}
+
+    <section class="inner_page_head mb-5">
+        <div class="container_fuild">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="full">
+                        <h3>Logged Out</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="text-center">
+        <i class="fa fa-quote-left" aria-hidden="true"></i>
+        <span class="h6">
+            &ensp;
+            다음에도 KEYBOARDIST와 함께 해주세요!
+            &ensp;
+        </span>
+        <i class="fa fa-quote-right" aria-hidden="true"></i>
+    </div><br>
+
+    <div class="text-center">
+        <a class="btn btn-outline-danger" href="{% url 'login' %}">LOGIN</a>        
+    </div>
+
+{% endblock %}
+<!-- 콘텐츠 블록 End -->
+
+<!-- 스크립트 블록 Start -->
+{% block extra-script %}
+
+{% endblock %}
+<!-- 스크립트 블록 End -->

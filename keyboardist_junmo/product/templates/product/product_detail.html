@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block title %}
+    {{ object.title }} - KEYBOARDIST
+{% endblock %}
+
+{% block extra-style %}
+    <style>
+        ul {
+            list-style: none;
+        }
+        .btn {
+            margin: auto;
+            display: block;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-5 wrap">
+            <a href="{{ object.image.url }}" target="_blank">
+                <img src="{{ object.image.url }}" style="width: 100%;" class="border shadow">
+            </a>
+        </div>
+        
+        <ul class="col-md-7 mt-3 pl-5">
+            <h2 class="">{{ object.title }}</h2>
+            <li class="h5"></li>
+                <p class="">{{ object.upload_dt }}</p>
+            <li class="h3 text-right font-weight-bold"><p class="">{{ object.price | intcomma }} ₩</p></li>
+                
+            <li class="h5 text-center">상품 설명</li>
+                <p class="text-center">{{ object.content }}</p>
+            <button class="btn btn-outline-danger float-center" onclick="alert(`주문이 완료 되었습니다.\n당일 내에 입금 하셔야 주문처리 됩니다.\n\n카카오뱅크 3333-02-1430874, 류준모`)">
+                구매하기
+            </button>
+        </ul>
+    </div>
+{% endblock %}

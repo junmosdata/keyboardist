@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block title %}
+    KEYBOARDIST - Login
+{% endblock %}
+
+{% block content %}
+
+    <section class="inner_page_head mb-5">
+        <div class="container_fuild">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="full">
+                        <h3>Login</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% if form.errors %}
+    <div class="alert alert-danger">
+        <div class="font-weight-bold">Wrong! Please correct the error(s) below.</div>
+        {{ form.errors }}
+    </div>
+    {% endif %}
+
+    <form action="." method="post" class="card pt-3">{% csrf_token %}
+        <div class="form-group row offset-sm-2">
+            {{ form.username|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }}
+            <div class="col-sm-5">
+                {{ form.username|add_class:"form-control"|attr:"autofocus"}}
+            </div>
+            <div class=""></div>
+        </div>
+        <div class="form-group row offset-sm-2">
+            {{ form.password|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold"}}
+            <div class="col-sm-5">
+                {{ form.password|add_class:"form-control" }}
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="offset-sm-4 col-sm-4">
+                <input type="submit" value="Login" class="btn btn-info"/>
+                <input type="hidden" name="next" value="{{ next }}"/>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}
